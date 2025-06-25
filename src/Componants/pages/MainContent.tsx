@@ -7,15 +7,7 @@ import Card from "./Card";
 import Sidepar from "./SidePar";
 import FollowersList from "./Topsellers";
 import { Link } from "react-router-dom";
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  rating?: number;
-  keywords?: string;
-}
+import type { Product } from "../../assets/Customs/FetchData";
 
 export default function MainContent() {
   const { search, selectedCategory, minprice, maxprice, keywords } =
@@ -31,6 +23,7 @@ export default function MainContent() {
     itemsPerPage,
     keywords
   );
+
   useEffect(() => {
     console.log("Fetched data:", data);
   }, [currentpage, itemsPerPage, keywords, data]);
@@ -58,24 +51,24 @@ export default function MainContent() {
       filtered = filtered.filter((item) => item.price <= maxprice);
     }
 
-    if (search && search.trim() !== "") {
+    if (search?.trim()) {
       filtered = filtered.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase())
       );
     }
 
-    if (keywords && keywords.trim() !== "") {
+    if (keywords?.trim()) {
       filtered = filtered.filter((item) =>
         item.title.toLowerCase().includes(keywords.toLowerCase())
       );
     }
 
     if (filter === "cheap") {
-      filtered = filtered.sort((a, b) => a.price - b.price);
+      filtered.sort((a, b) => a.price - b.price);
     } else if (filter === "expensive") {
-      filtered = filtered.sort((a, b) => b.price - a.price);
+      filtered.sort((a, b) => b.price - a.price);
     } else if (filter === "popular") {
-      filtered = filtered.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+      filtered.sort((a, b) => (b.rating || 0) - (a.rating || 0));
     }
 
     return filtered;
@@ -132,14 +125,17 @@ export default function MainContent() {
                 </button>
               </div>
             )}
-            <div className="flex justify-end pr-7 ">
-             <Link to={"/add"}><button  className="cursor-pointer border rounded border-black/12 w-20 h-10 z-10">Cart 🛒</button></Link> 
+
+            <div className="flex justify-end pr-7">
+              <Link to="/add">
+                <button className="cursor-pointer border rounded border-black/12 w-20 h-10 z-10">
+                  Cart 🛒
+                </button>
+              </Link>
             </div>
           </div>
         </div>
-        {/* Cart */}
 
-        {/* Cards */}
         <div className="w-full">
           {isLoading ? (
             <div>Loading...</div>

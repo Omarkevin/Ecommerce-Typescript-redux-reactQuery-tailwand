@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 
 
 
-  interface Product {
+  export interface Product {
   id: number;
   title: string;
   description: string;
@@ -15,8 +15,7 @@ import { useQuery } from '@tanstack/react-query'
   category: string;
   thumbnail: string;
   images: string[];
-  keywords : string ; 
- 
+  keywords: string;
 }
 
 interface ProductsResponse {

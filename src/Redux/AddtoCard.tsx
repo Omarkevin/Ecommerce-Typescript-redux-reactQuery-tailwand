@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import type { Product } from '../assets/Customs/FetchData';
 
-interface Product {
+interface CartItem {
   id: number;
   title: string;
   price: number;
@@ -10,7 +11,7 @@ interface Product {
 }
 
 interface CartState {
-  items: Product[];
+  items: CartItem[];
   total: number;
 }
 
@@ -23,7 +24,7 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<Omit<Product, 'quantity'>>) => {
+    addToCart: (state, action: PayloadAction<Omit<CartItem, 'quantity'>>) => {
       const existing = state.items.find(item => item.id === action.payload.id);
       if (existing) {
         existing.quantity += 1;

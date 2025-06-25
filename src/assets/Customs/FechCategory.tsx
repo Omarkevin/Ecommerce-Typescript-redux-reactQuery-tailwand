@@ -1,12 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-
-
-interface Product {
-  category: string;
-}
+import type { Product } from "./FetchData";
 
 interface FetchResponse {
-  products: Product[];
+  products: Pick<Product, "category">[];
 }
 
 const fetchCategories = async (): Promise<string[]> => {

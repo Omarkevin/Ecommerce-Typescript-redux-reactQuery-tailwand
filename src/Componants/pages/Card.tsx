@@ -1,20 +1,8 @@
 import { Link } from "react-router-dom";
 import { FiStar, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import type { Product } from "../../assets/Customs/FetchData";
 
 
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string;
-}
 
 interface CardProps {
   data: Product[];
