@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Product } from '../assets/Customs/FetchData';
+
 
 interface CartItem {
   id: number;
